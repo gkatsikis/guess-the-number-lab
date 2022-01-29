@@ -5,21 +5,47 @@ const game = {
   biggestNum: 100,
   smallestNum: 1,
   secretNum: null,
-  play: function() {
-    this.secretNum = Math.floor(Math.random() * 
-      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
-  },
   prevGuesses: [],
-  getGuess: function(){
-    guess1 = prompt(`Guess a number between ${[this.smallestNum]} and ${[this.biggestNum]}`)
-    while(typeof guess1 !== 'number' || guess1 < this.smallestNum || guess1 > this.biggestNum){
-      console.log("Nice try! But that either wasn't within the numerical range or not a number");
-      this.getGuess();
+  displayGuesses: [],
+
+  play: function () {
+    this.secretNum = Math.floor(Math.random() *
+      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
+    do {
+      this.getGuess()
+      // for(let i = 0; i < this.prevGuesses.length; i++){
+      //   if(this.prevGuesses[i] !== NaN){
+      //     this.displayGuesses.push(this.prevGuesses[i])
+      //   }
+      // }
+      console.log(this.displayGuesses)
+    } while (guess !== this.secretNum)
+    console.log(`You win! The number was ${this.secretNum}!`)
+   },
+
+  getGuess: function () {
+    guess = parseInt(prompt(`Guess a number between ${[this.smallestNum]} and ${[this.biggestNum]}`))
+    if (typeof guess !== 'number' || guess < this.smallestNum || guess > this.biggestNum) {
+      console.log("Nice try! But that either wasn't within the numerical range or not a number")
+      this.getGuess()
+    } else {
+      console.log("That was not the number...but don't give up!")
+      this.prevGuesses.push(guess)
+    }
+    // while (typeof guess !== 'number' || guess < this.smallestNum || guess > this.biggestNum) {
+    //   console.log("Nice try! But that either wasn't within the numerical range or not a number")
+    //   this.getGuess()
+    },
+
+    render: function(){
+      if(guess === this.secretNum){
+        console.log(`Congratulations! You guessed it! The number was ${this.secretNum}`)
+      } 
     }
   }
-}
 
-console.log(game.getGuess())
+
+// game.play()
 
 
 
