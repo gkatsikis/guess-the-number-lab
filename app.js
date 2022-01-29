@@ -8,9 +8,8 @@ const game = {
   prevGuesses: [],
 
   play: function () {
-    // this.biggestNum = prompt('Choose the maximum number')
-    // this.smallestNum = prompt('Choose the lowest number')
-    //^^^ this gets to getGuess() but doesn't return console.log or array
+    // this.chooseRange()   ...somehow picked a number outside of it's range (array, high/low, and response work)
+    
     this.secretNum = Math.floor(Math.random() *
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
     do {
@@ -44,8 +43,13 @@ const game = {
     render: function(){
         console.log(`Congratulations! You guessed it! The number was ${this.secretNum}`)
         numGuesses = this.prevGuesses.length
-        console.log(`It took you ${numGuesses} guesses`)
-      } 
+        return `It took you ${numGuesses} guesses`
+      },
+
+    // chooseRange: function(){
+    //   this.biggestNum = prompt('Choose the maximum number')
+    //   this.smallestNum = prompt('Choose the lowest number')       
+    // },
   }
 
   // game.play()
