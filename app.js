@@ -8,13 +8,23 @@ const game = {
   play: function() {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
+  },
+  prevGuesses: [],
+  getGuess: function(){
+    guess1 = prompt(`Guess a number between ${[this.smallestNum]} and ${[this.biggestNum]}`)
+    while(typeof guess1 !== 'number' || guess1 < this.smallestNum || guess1 > this.biggestNum){
+      console.log("Nice try! But that either wasn't within the numerical range or not a number");
+      this.getGuess();
+    }
   }
 }
 
-let prevGuesses = [] //to compile past guesses to display
+console.log(game.getGuess())
 
 
-let getGuess = prompt(`Guess a number between ${[smallestNum]} and ${[biggestNum]}`)
+
+
+
 
 //while loop to ensure 1.number not a string and 2.is between smallestNum and biggestNum
 //parseInt returns NaN if string cannot become a number
@@ -29,7 +39,8 @@ let getGuess = prompt(`Guess a number between ${[smallestNum]} and ${[biggestNum
 
 //'return' only when player has guessed secretNum
 
-window.alert("Sorry! That number wasn't quite right") //for incorrect guesses -- add too high or too low depending
+// window.alert("Sorry! That number wasn't quite right") ***
+//for incorrect guesses -- add too high or too low depending
 
 
 
