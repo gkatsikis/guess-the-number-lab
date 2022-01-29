@@ -18,24 +18,26 @@ const game = {
       //     this.displayGuesses.push(this.prevGuesses[i])
       //   }
       // }
-      console.log(this.displayGuesses)
+      console.log(this.prevGuesses)
     } while (guess !== this.secretNum)
     console.log(`You win! The number was ${this.secretNum}!`)
    },
 
   getGuess: function () {
     guess = parseInt(prompt(`Guess a number between ${[this.smallestNum]} and ${[this.biggestNum]}`))
-    if (typeof guess !== 'number' || guess < this.smallestNum || guess > this.biggestNum) {
-      console.log("Nice try! But that either wasn't within the numerical range or not a number")
-      this.getGuess()
-    } else {
-      console.log("That was not the number...but don't give up!")
-      this.prevGuesses.push(guess)
-    }
-    // while (typeof guess !== 'number' || guess < this.smallestNum || guess > this.biggestNum) {
+    // if (isNaN(guess) || guess < this.smallestNum || guess > this.biggestNum) {
     //   console.log("Nice try! But that either wasn't within the numerical range or not a number")
     //   this.getGuess()
-    },
+    // } else {
+    //   console.log("That was not the number...but don't give up!")
+    //   this.prevGuesses.push(guess)
+    // }
+    while (isNaN(guess) || guess < this.smallestNum || guess > this.biggestNum) {
+      console.log("Nice try! But that either wasn't within the numerical range or not a number")
+      this.getGuess()
+      this.prevGuesses.push(guess)
+    }
+  },
 
     render: function(){
       if(guess === this.secretNum){
@@ -45,7 +47,7 @@ const game = {
   }
 
 
-// game.play()
+game.play()
 
 
 
