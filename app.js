@@ -8,7 +8,7 @@ const game = {
   prevGuesses: [],
 
   play: function () {
-    // this.chooseRange()   ...somehow picked a number outside of it's range (array, high/low, and response work)
+    this.chooseRange()  
     
     this.secretNum = Math.floor(Math.random() *
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
@@ -19,8 +19,11 @@ const game = {
       } else if(guess < this.secretNum){
         console.log('Your guess was too low')
       }
-      //for loop for no array brackets
-      console.log(this.prevGuesses)
+      console.log('Your prior guesses...')
+      for(let i=0; i < this.prevGuesses.length; i++){
+        console.log(this.prevGuesses[i])
+      }
+      // console.log(this.prevGuesses)
     } while (guess !== this.secretNum)
     this.render()
    },
@@ -47,18 +50,15 @@ const game = {
         console.log(`It took you ${numGuesses} guesses`)
       },
 
-//// this is meant to be min/max set
-    // chooseRange: function(){
-    //   this.biggestNum = prompt('Choose the maximum number')   
-    //   this.smallestNum = prompt('Choose the lowest number')       
-    // },
+    chooseRange: function(){
+      this.biggestNum = parseInt(prompt('Choose the maximum number'))   
+      this.smallestNum = parseInt(prompt('Choose the lowest number'))       
+    },
   }
 
   // game.play()
 
 //Task1: Array of PrevGuesses >>> .join() previous guesses
-//Why is it ending then resetting?
-//variable not creating with 'let' and 'const', only alone
 //if I input NaN response then next guess doubles
 
 
