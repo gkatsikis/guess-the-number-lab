@@ -16,14 +16,16 @@ const game = {
       this.getGuess()
       if (guess > this.secretNum){
         console.log('Your guess was too high')
+        this.biggestNum = guess //test
       } else if(guess < this.secretNum){
         console.log('Your guess was too low')
+        this.smallestNum = guess //test
       }
       console.log('Your prior guesses...')
-      for(let i=0; i < this.prevGuesses.length; i++){
-        console.log(this.prevGuesses[i])
-      }
-      // console.log(this.prevGuesses)
+      // for(let i=0; i < this.prevGuesses.length; i++){
+      //   console.log(this.prevGuesses[i])
+      // }
+      console.log(this.prevGuesses.join())
     } while (guess !== this.secretNum)
     this.render()
    },
